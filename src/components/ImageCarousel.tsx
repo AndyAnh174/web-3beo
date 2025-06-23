@@ -45,7 +45,7 @@ const descriptions = [
 ];
 
 export const images: Slide[] = titles.map((title, index) => ({
-  url: `/src/assets/slides/${index + 1}.jpg`,
+  url: `/public/slides/${index + 1}.jpg`,
   title,
   description: descriptions[index],
 }));
