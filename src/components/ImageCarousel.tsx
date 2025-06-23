@@ -1,54 +1,103 @@
 import { useEffect, useState } from 'react';
+import slide1 from '../assets/slides/1.jpg';
+import slide2 from '../assets/slides/2.jpg';
+import slide3 from '../assets/slides/3.jpg';
+import slide4 from '../assets/slides/4.jpg';
+import slide5 from '../assets/slides/5.jpg';
+import slide6 from '../assets/slides/6.jpg';
+import slide7 from '../assets/slides/7.jpg';
+import slide8 from '../assets/slides/8.jpg';
+import slide9 from '../assets/slides/9.jpg';
+import slide10 from '../assets/slides/10.jpg';
+import slide11 from '../assets/slides/11.jpg';
+import slide12 from '../assets/slides/12.jpg';
+import slide13 from '../assets/slides/13.jpg';
+import slide14 from '../assets/slides/14.jpg';
+import slide15 from '../assets/slides/15.jpg';
+import slide16 from '../assets/slides/16.jpg';
 
-interface Slide {
-  url: string;
-  title: string;
-  description: string;
-}
-
-const titles = [
-  'Rau xanh tươi ngon',
-  'Quy trình canh tác hiện đại',
-  'Sản phẩm chất lượng cao',
-  'Trang trại xanh sạch đẹp',
-  'Phục vụ tận tâm',
-  'Nông sản tươi sạch',
-  'Canh tác bền vững',
-  'Kiểm tra chất lượng',
-  'Công nghệ hiện đại',
-  'Đa dạng sản phẩm',
-  'An toàn thực phẩm',
-  'Chăm sóc cây trồng',
-  'Thu hoạch đúng thời điểm',
-  'Đóng gói và bảo quản',
-  'Giao hàng tận nơi',
-  'Cam kết chất lượng',
+const images = [
+  {
+    url: slide1,
+    title: 'Rau xanh tươi ngon',
+    description: 'Rau được trồng theo phương pháp hữu cơ, đảm bảo an toàn cho sức khỏe'
+  },
+  {
+    url: slide2,
+    title: 'Quy trình canh tác hiện đại',
+    description: 'Áp dụng công nghệ tiên tiến trong việc chăm sóc và thu hoạch'
+  },
+  {
+    url: slide3,
+    title: 'Sản phẩm chất lượng cao',
+    description: 'Cam kết mang đến những sản phẩm tươi ngon và an toàn nhất'
+  },
+  {
+    url: slide4,
+    title: 'Trang trại xanh sạch đẹp',
+    description: 'Môi trường canh tác trong lành, thân thiện với thiên nhiên'
+  },
+  {
+    url: slide5,
+    title: 'Phục vụ tận tâm',
+    description: 'Đội ngũ nhân viên chuyên nghiệp, tận tâm phục vụ khách hàng'
+  },
+  {
+    url: slide6,
+    title: 'Nông sản tươi sạch',
+    description: 'Sản phẩm được thu hoạch hàng ngày, đảm bảo độ tươi ngon tối đa'
+  },
+  {
+    url: slide7,
+    title: 'Canh tác bền vững',
+    description: 'Phương pháp canh tác thân thiện môi trường, bảo vệ đất và nước'
+  },
+  {
+    url: slide8,
+    title: 'Kiểm tra chất lượng',
+    description: 'Quy trình kiểm soát chất lượng nghiêm ngặt từ gieo trồng đến thu hoạch'
+  },
+  {
+    url: slide9,
+    title: 'Công nghệ hiện đại',
+    description: 'Ứng dụng công nghệ 4.0 trong nông nghiệp để tối ưu năng suất'
+  },
+  {
+    url: slide10,
+    title: 'Đa dạng sản phẩm',
+    description: 'Cung cấp nhiều loại rau củ quả tươi ngon theo mùa vụ'
+  },
+  {
+    url: slide11,
+    title: 'An toàn thực phẩm',
+    description: 'Tuân thủ nghiêm ngặt các tiêu chuẩn an toàn thực phẩm quốc tế'
+  },
+  {
+    url: slide12,
+    title: 'Chăm sóc cây trồng',
+    description: 'Đội ngũ kỹ thuật viên giàu kinh nghiệm chăm sóc cây trồng 24/7'
+  },
+  {
+    url: slide13,
+    title: 'Thu hoạch đúng thời điểm',
+    description: 'Thu hoạch vào thời điểm thích hợp để đảm bảo chất lượng tốt nhất'
+  },
+  {
+    url: slide14,
+    title: 'Đóng gói và bảo quản',
+    description: 'Quy trình đóng gói chuyên nghiệp, bảo quản tươi ngon lâu dài'
+  },
+  {
+    url: slide15,
+    title: 'Giao hàng tận nơi',
+    description: 'Dịch vụ giao hàng nhanh chóng, đảm bảo sản phẩm tươi ngon'
+  },
+  {
+    url: slide16,
+    title: 'Cam kết chất lượng',
+    description: 'Luôn đặt chất lượng và sự hài lòng của khách hàng lên hàng đầu'
+  },
 ];
-
-const descriptions = [
-  'Rau được trồng theo phương pháp hữu cơ, đảm bảo an toàn cho sức khỏe',
-  'Áp dụng công nghệ tiên tiến trong việc chăm sóc và thu hoạch',
-  'Cam kết mang đến những sản phẩm tươi ngon và an toàn nhất',
-  'Môi trường canh tác trong lành, thân thiện với thiên nhiên',
-  'Đội ngũ nhân viên chuyên nghiệp, tận tâm phục vụ khách hàng',
-  'Sản phẩm được thu hoạch hàng ngày, đảm bảo độ tươi ngon tối đa',
-  'Phương pháp canh tác thân thiện môi trường, bảo vệ đất và nước',
-  'Quy trình kiểm soát chất lượng nghiêm ngặt từ gieo trồng đến thu hoạch',
-  'Ứng dụng công nghệ 4.0 trong nông nghiệp để tối ưu năng suất',
-  'Cung cấp nhiều loại rau củ quả tươi ngon theo mùa vụ',
-  'Tuân thủ nghiêm ngặt các tiêu chuẩn an toàn thực phẩm quốc tế',
-  'Đội ngũ kỹ thuật viên giàu kinh nghiệm chăm sóc cây trồng 24/7',
-  'Thu hoạch vào thời điểm thích hợp để đảm bảo chất lượng tốt nhất',
-  'Quy trình đóng gói chuyên nghiệp, bảo quản tươi ngon lâu dài',
-  'Dịch vụ giao hàng nhanh chóng, đảm bảo sản phẩm tươi ngon',
-  'Luôn đặt chất lượng và sự hài lòng của khách hàng lên hàng đầu',
-];
-
-export const images: Slide[] = titles.map((title, index) => ({
-  url: `/public/slides/${index + 1}.jpg`,
-  title,
-  description: descriptions[index],
-}));
 
 
 export default function ImageCarousel() {
