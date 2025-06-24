@@ -1,3 +1,4 @@
+import logo from '../assets/logo/trangtraisongduong.png';
 interface LogoProps {
     isSticky: boolean;
   }
@@ -13,7 +14,7 @@ interface LogoProps {
           {/* Logo image */}
           <div className="relative">
             <img 
-              src="/src/assets/logo/trangtraisongduong.png" 
+              src={logo} 
               alt="Trang Trại Song Dương" 
               className={`transition-all duration-300 ${
                 isSticky ? 'h-16 w-16' : 'h-20 w-20'
